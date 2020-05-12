@@ -35,11 +35,10 @@ function getBooks() {
 
 function writeBook(book: any) {
   const db: any = getDb();
-  const id: number = db.length + 1;
 
-  book.id = id;
+  book.id = db.length + 1;
   db.push(book);
-  writeJsonSync("./db.json", db);
+  writeJsonSync(dbFilePath, db);
   return book;
 }
 
