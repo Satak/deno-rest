@@ -4,7 +4,7 @@ import {
   bookListController,
   bookGetController,
   bookPostController,
-} from "./books.ts";
+} from "./bookController.ts";
 
 const port = 8000;
 const router = new Router();

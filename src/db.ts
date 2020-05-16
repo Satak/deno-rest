@@ -40,4 +40,4 @@ function writeBook(book: Book): Book {
   return book;
 }
 
-export { getBooks, writeBook };
+export { getBooks, writeBook, Book };
