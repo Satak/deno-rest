@@ -4,37 +4,35 @@ import { writeJsonSync } from "https://deno.land/std/fs/write_json.ts";
 const dbFilePath = "./db.json";
 
 interface Book {
-  id: number;
   title: string;
   author: string;
+  id?: number;
 }
 
-function getDb() {
-  let dbFile: any;
+function getDb(): Book[] {
+  let books: Book[];
   try {
-    dbFile = readJsonSync(dbFilePath);
+    books = readJsonSync(dbFilePath) as Book[];
+    return books;
   } catch (error) {
     console.log(error);
+    return [];
   }
-
-  return dbFile || [];
 }
 
-function getBooks() {
-  const books = new Map<string, Book>();
-  const db: any = getDb();
+function getBooks(): Map<string, Book> {
+  const booksMap = new Map<string, Book>();
+  const books: Book[] = getDb();
 
-  if (!db.length) return books;
-
-  db.forEach((book: Book) => {
-    books.set(`${book.id}`, book);
+  books.forEach((book: Book) => {
+    booksMap.set(`${book.id}`, book);
   });
 
-  return books;
+  return booksMap;
 }
 
-function writeBook(book: any) {
-  const db: any = getDb();
+function writeBook(book: Book): Book {
+  const db: Book[] = getDb();
 
   book.id = db.length + 1;
   db.push(book);
