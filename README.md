@@ -1,6 +1,6 @@
-# Deno REST API
+# <img src="https://deno.land/logo.svg" alt="drawing" width="50"/> Deno REST API
 
-Testing Deno as a REST API backend. Written in poor and hacky TypeScript since Deno supports TS natively.
+Deno REST API server written in TypeScript
 
 - <https://deno.land/>
 - <https://doc.deno.land/https/deno.land/x/oak/mod.ts>
