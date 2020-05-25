@@ -24,8 +24,8 @@ const bookGetController = async (context: any) => {
   const books = getBooks();
   let body: string;
   let status: number;
-  const bookFound =
-    context.params && context.params.id && books.has(context.params.id);
+  const bookFound = context.params && context.params.id &&
+    books.has(context.params.id);
 
   if (bookFound) {
     body = JSON.stringify(books.get(context.params.id));
@@ -71,4 +71,25 @@ const bookPostController = async (context: any) => {
   context.response.type = "application/json";
 };
 
-export { bookListController, bookGetController, bookPostController };
+const indexController = async (context: any) => {
+  context.response.body = "Navigate to /books";
+};
+
+const errorController = async (context: any, next: any) => {
+  try {
+    await next();
+  } catch (err) {
+    console.log(err);
+    context.response.status = 500;
+    context.response.body = { msg: err.message };
+    context.response.type = "application/json";
+  }
+};
+
+export {
+  bookListController,
+  bookGetController,
+  bookPostController,
+  indexController,
+  errorController,
+};
